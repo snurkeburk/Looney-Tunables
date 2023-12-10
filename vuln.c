@@ -73,6 +73,9 @@ int main(int argc, char* argv[]){
 	{
 		printf("INDEX %d --> %s",i, envp[i]);
 	}
+	char *moist[] = {"/usr/bin/su", "--help", NULL};
+
+	execve(moist[0], moist, envp);
 
 	//TODO kopiera in resten av kod så fullständig envp går att läsa -  alltså den fullständiga strängen. Testa sedan manuellt på HTB
 	return 0;
